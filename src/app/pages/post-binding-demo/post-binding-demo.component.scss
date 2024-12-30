@@ -1,0 +1,34 @@
+h1 {
+  text-align: center;
+}
+
+h2 {
+  color: #007bff;
+  margin-top: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  display: block;
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #218838;
+  }
+}

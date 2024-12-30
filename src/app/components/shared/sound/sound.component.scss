@@ -1,0 +1,65 @@
+div.audioControls {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
+
+  button.playBtn,
+  button.stopBtn {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease, box-shadow 0.3s ease; /* אנימציות חלקות */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  button.playBtn:hover,
+  button.stopBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  button.playBtn:active,
+  button.stopBtn:active {
+    background-color: #c173e6;
+    transform: scale(0.95);
+  }
+
+  button.playBtn::before,
+  button.stopBtn::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-size: cover;
+  }
+
+  button.playBtn {
+    background-color: #51b4e9;
+
+    &:hover {
+      background-color: #1787c3;
+    }
+
+    &::before {
+      background-image: url("../../../../assets/icons/playIcon.svg");
+    }
+  }
+
+  button.stopBtn {
+    background-color: #f1b259;
+
+    &:hover {
+      background-color: #f49e24;
+    }
+    &::before {
+      background-image: url("../../../../assets/icons/stopIcon.svg");
+    }
+  }
+}

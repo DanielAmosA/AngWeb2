@@ -1,0 +1,26 @@
+<div class="termsContainer">
+  <div class="header">
+    <h1 class="desc">תנאים והגבלות</h1>
+    <p class="lastUpdated">עודכן לאחרונה: דצמבר 2024</p>
+  </div>
+
+  <div class="sections">
+    <div *ngFor="let term of terms" class="section">
+      <div class="sectionHeader">
+        <mat-icon class="sectionIcon">gavel</mat-icon>
+        <h2 class="sectionSubHeader">{{term.title}}</h2>
+      </div>
+      <mat-divider class="sectionDivider"></mat-divider>
+      <p class="content" [innerHTML]="term.content"></p>
+    </div>
+  </div>
+
+  <div class="backHome">
+    <button class="homeButton" [routerLink]="['/']">
+      <mat-icon>home</mat-icon>
+      <span>חזרה לעמוד הבית</span>
+    </button>
+  </div>
+</div>
+
+

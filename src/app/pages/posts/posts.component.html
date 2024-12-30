@@ -1,0 +1,30 @@
+<h1>Loop Posts</h1>
+<h1>Posts</h1>
+<div *ngFor="let post of posts">
+  <app-post-item [post]="post"></app-post-item>
+</div>
+
+<h1>Loop Posts With routerLink ( basic + queryParams)</h1>
+<h1>Posts</h1>
+<div *ngFor="let post of posts">
+  <app-post-item [post]="post"></app-post-item>
+  <a [routerLink]="['/post', post.id]">View Details</a>
+  <a [routerLink]="['/post', post.id]" [queryParams]="{ source: 'home' }">View Details2</a>
+</div>
+
+<h1>Loop Posts With Create + handleDelete </h1>
+<h1>Posts</h1>
+<a routerLink="/create-post">Create New Post</a>
+<div *ngFor="let post of posts">
+  <app-post-item [post]="post" (delete)="handleDelete($event)"></app-post-item>
+</div>
+
+<h1>Loop Posts With handleDelete + handleUpdate </h1>
+<h1>Posts</h1>
+<div *ngFor="let post of posts">
+  <app-post-item
+    [post]="post"
+    (delete)="handleDelete($event)"
+    (update)="handleUpdate($event)"
+  ></app-post-item>
+</div>

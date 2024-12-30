@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>עדכון פרטי עובד</h2>
+<mat-dialog-content>
+  <form [formGroup]="employeeForm" (ngSubmit)="updateEmployee()">
+    <mat-form-field appearance="fill">
+      <mat-label>שם מלא</mat-label>
+      <input matInput formControlName="fullName" />
+      <mat-error *ngIf="employeeForm.get('fullName')?.invalid">
+        שם מלא הוא שדה חובה
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>טלפון</mat-label>
+      <input matInput formControlName="phone" />
+      <mat-error *ngIf="employeeForm.get('phone')?.invalid">
+        טלפון לא תקין
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>אימייל</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="employeeForm.get('email')?.invalid">
+        אימייל לא תקין
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="updateEmployee()" [disabled]="employeeForm.invalid">עדכן</button>
+  <button mat-button mat-dialog-close>סגור</button>
+</mat-dialog-actions>

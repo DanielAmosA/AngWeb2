@@ -1,0 +1,22 @@
+<div  #mainAppDiv>
+  <app-sound></app-sound>
+  <nav>
+    <!-- <a routerLink="/">Home</a>
+    <a routerLink="/about">About</a>
+    <a routerLink="/login">Login</a> -->
+    <a routerLink="/">Home</a>
+    <a routerLink="/create-post">Create Post</a>
+    <a routerLink="/posts-so-ta">Posts So Ta</a>
+    <a routerLink="/posts">Posts</a>
+    <a routerLink="/post-binding-demo">Posts Binding</a>
+    <a routerLink="/manager-data">Manager Data</a>
+    <a routerLink="/sign-up">Sign Up</a>
+  </nav>
+  <router-outlet></router-outlet>
+
+  <button mat-raised-button color="primary" (click)="showSuccess()">Success Dialog</button>
+  <button mat-raised-button color="warn" (click)="showError()">Error Dialog</button>
+
+  <button mat-button (click)="openDialog()">עדכן עובד</button>
+</div>
+

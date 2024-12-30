@@ -1,0 +1,155 @@
+div.policyContainer, div.termsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1c2c 0%, #4a1942 100%);
+  min-height: 100vh;
+  color: white;
+
+  div.header {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    h1.desc {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #00e5ff, #9d00ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, #00e5ff, #9d00ff);
+        margin: 1rem auto;
+      }
+    }
+
+    p.lastUpdated {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+  }
+
+  div.sections {
+    div.section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      div.sectionHeader {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        mat-icon.sectionIcon {
+          margin-left: 1rem;
+          color: #00e5ff;
+        }
+
+        h2.sectionSubHeader {
+          font-size: 1.5rem;
+          color: #00e5ff;
+        }
+      }
+
+      mat-divider.sectionDivider {
+        margin: 1rem 0;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      p.content {
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+
+  div.backHome {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+
+    button.homeButton {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #00e5ff, #9d00ff);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+      mat-icon.homeIcon {
+        font-size: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+
+        mat-icon.homeIcon {
+          transform: scale(1.2);
+        }
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  div.policyContainer, div.termsContainer {
+    padding: 1rem;
+
+    div.header
+    {
+      h1.desc {
+        font-size: 2rem;
+      }
+    }
+
+    div.sections{
+      div.section {
+        padding: 1.5rem;
+      }
+    }
+
+    div.backHome {
+      top: 1rem;
+      right: 1rem;
+
+      button.homeButton {
+        padding: 0.6rem 1rem;
+
+        span.homeSpan {
+          display: none; // מסתיר את הטקסט במסך קטן
+        }
+
+        mat-icon.homeIcon{
+          margin: 0;
+        }
+      }
+    }
+  }
+}

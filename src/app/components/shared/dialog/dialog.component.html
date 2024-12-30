@@ -1,0 +1,25 @@
+<div class="dialogContainer" [ngClass]="data.type">
+  <div class="specialBackground"></div> <!-- רקע מונפש -->
+
+  <!-- Image -->
+  <div class="dialogHeader">
+    <img *ngIf="data.type === 'Success'" src="assets/images/dialogSuccess.gif" alt="Success" class="dialogImage" />
+    <img *ngIf="data.type === 'Warning'" src="assets/images/dialogWarning.gif" alt="Warning" class="dialogImage" />
+    <img *ngIf="data.type === 'Error'" src="assets/images/dialogError.gif" alt="Error" class="dialogImage" />
+  </div>
+
+   <!-- Title -->
+  <h2 mat-dialog-title class="dialogTitle">{{ data.title }}</h2>
+
+   <!-- Description -->
+  <mat-dialog-content class="dialogContent">
+    {{ data.desc }}
+  </mat-dialog-content>
+
+   <!-- Actions -->
+  <mat-dialog-actions class="dialogActions">
+    <button  class="dialogActionsBtn" mat-button *ngIf="data.dialogButtons === 'YesNo'" (click)="close('yes')">Yes</button>
+    <button  class="dialogActionsBtn" mat-button *ngIf="data.dialogButtons === 'YesNo'" (click)="close('no')">No</button>
+    <button  class="dialogActionsBtn" mat-raised-button color="primary" *ngIf="data.dialogButtons === 'Ok'" (click)="close()">Ok</button>
+  </mat-dialog-actions>
+</div>

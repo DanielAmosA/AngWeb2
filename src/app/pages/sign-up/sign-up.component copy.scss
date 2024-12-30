@@ -1,0 +1,5 @@
+// The animation creates an effect where the element starts smaller and then expands to its normal size.
+@keyframes scaleUp {
+  0% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}

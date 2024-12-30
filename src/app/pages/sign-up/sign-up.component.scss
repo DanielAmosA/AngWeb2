@@ -1,0 +1,168 @@
+// Colors
+$primary-color: #4caf50;
+$secondary-color: #2196f3;
+$error-color: #f44336;
+$success-color: #4caf50;
+
+// General Spacing
+$spacing: 20px;
+
+// Animation
+
+// This animation is responsible for adding a smooth fade-in and fade-out effect to an element
+// Creates an effect where the element "appears" by moving upward and becoming opaque.
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+// This animation is responsible for changing the background color using a gradient
+// Creates an effect where the gradient colors transition smoothly.
+
+@keyframes backgroundChange {
+  0% { background: linear-gradient(45deg, $primary-color, $secondary-color); }
+  100% { background: linear-gradient(45deg, $secondary-color, $primary-color); }
+}
+
+// The animation creates an effect where the element starts smaller and then expands to its normal size.
+@keyframes scaleUp {
+  0% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
+div.signUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, $primary-color, $secondary-color);
+  animation: backgroundChange 5s infinite alternate;
+  height: fit-content;
+  margin-top: 20px;
+  gap: 30px;
+  max-width: 100%;
+
+  mat-card.signUpCard {
+    padding: 40px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: white;
+    animation: fadeIn 3s ease-out;
+    margin-left: 30px;
+    margin: 20px 0px;
+
+    form.signUpForm{
+
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: scaleUp 1s ease-out 0.5s;
+
+      h1.signUpTitle{
+        font-size: 3rem;
+        margin-bottom: 30px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #ff6b6b, #f79c42, #5e4ae3);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        animation: scaleUp 1s ease-out 0.5s;
+        letter-spacing: 2px;
+      }
+
+      mat-form-field.signUpInputField {
+        width: 100%;
+        direction: rtl;
+
+        mat-icon.signUpInputFieldIcon {
+          cursor: pointer;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+
+
+      div.errors{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        animation: scaleUp 0.5s ease-out;
+        margin-top: -30px;
+
+        mat-error.error{
+          color: $error-color;
+          font-size: 0.875rem;
+          background-color: #f8d7da;
+          color: #721c24;
+          padding: 10px;
+          border-radius: 5px;
+          font-size: 0.875rem;
+          font-weight: bold;
+          border-left: 5px solid #e74c3c;
+          opacity: 0;
+          transform: translateY(20px);
+          animation: fadeIn 0.5s ease-out forwards;
+          margin-top: 10px;
+          animation-delay: calc(0.1s * var(--index));
+        }
+      }
+
+      button.signUpButton {
+        margin-top: 20px;
+        background-color: $primary-color;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 12px 20px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        animation: scaleUp 1s ease-out 0.5s;
+
+        &:hover {
+          background-color: $secondary-color;
+          transform: scale(1.05);
+          cursor: url('../../../assets/cursor/active.png'), pointer;
+        }
+
+        &:disabled {
+          background-color: #cccccc;
+          color: #666666;
+          cursor: url('../../../assets/cursor/disabled.png'), not-allowed;
+          pointer-events: auto;
+
+          &:hover {
+            cursor: url('../../../assets/cursor/disabled.png'), not-allowed;
+            transform: scale(1.05);
+          }
+        }
+
+      }
+    }
+  }
+
+  div.imageContainer {
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    img.imageForm {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+      animation: scaleUp 1s ease-out 0.3s;
+    }
+  }
+}

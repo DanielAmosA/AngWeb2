@@ -1,0 +1,319 @@
+/* Prevent scrolling when the dialog is open */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+div.dialogContainer {
+  max-width: 420px;
+  width: 90%;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Above all other elements */
+  background-color: white;
+
+  /* Styling for success */
+  &.Success {
+    background: linear-gradient(135deg, #d4f6d7, #b2f2bc);
+    border: 3px solid #4caf50;
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.7);
+    animation: successExplosion 2s ease-in-out infinite forwards, successGlow 2s infinite alternate;
+    top: 37vh !important;
+    left: 42.6vw !important;
+
+    /* Sparks */
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.5), transparent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: sparkles 1s infinite forwards;
+    }
+
+    &::after {
+      width: 120px;
+      height: 120px;
+      animation-delay: 0.2s;
+    }
+  }
+
+  /* Styling for error */
+  &.Error {
+    background: linear-gradient(135deg, #fde1e1, #ffcccc);
+    border: 3px solid #f44336;
+    box-shadow: 0 0 25px rgba(244, 67, 54, 0.8);
+    animation: errorEarthquake 0.8s forwards cubic-bezier(0.68, -0.55, 0.27, 1.55), errorGlow 2s infinite alternate;
+    top: 37vh !important;
+    left: 42.6vw !important;
+
+    /* Pulsing effect around the dialog */
+    &::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 2px dashed rgba(244, 67, 54, 0.5);
+      border-radius: 16px;
+      animation: errorPulse 1.2s infinite;
+    }
+
+  }
+
+  /* Styling for warning */
+  &.Warning {
+    background: linear-gradient(135deg, #fff8e1, #ffecb3);
+    border: 3px solid #ffa726;
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.6);
+    animation: warningBounce 1.2s infinite alternate, warningGlow 2s infinite alternate;
+    top: 37vh !important;
+    left: 42.6vw !important;
+
+    /* Rotation effect around the dialog */
+    &::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 2px dashed rgba(255, 152, 0, 0.6);
+      border-radius: 16px;
+      animation: warningRotate 2s linear infinite;
+    }
+  }
+
+  div.dialogHeader {
+    margin-bottom: 15px;
+
+    img.dialogImage {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      animation: bounceIn 0.8s ease-out;
+    }
+  }
+
+  h2.dialogTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  mat-dialog-content.dialogContent {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+  }
+
+  mat-dialog-actions.dialogActions {
+    display: flex;
+    justify-content: space-evenly;
+
+    button.dialogActionsBtn {
+      min-width: 120px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+                                          /* General animations */
+
+// Smooth appearance of the element
+// Purpose: Creates a calm and natural appearance effect.
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+                                          /* Success */
+
+// Subtle "growth" effect for success
+// Purpose: Highlights a sense of success with a gentle growth animation.
+
+@keyframes successExplosion {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Element "glows" with shifting shadows
+// Purpose: Adds a dynamic feel to the success state.
+
+@keyframes successGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(76, 175, 80, 1);
+  }
+}
+
+// Festive and impressive visual effect
+// Purpose: Creates a celebratory and striking appearance.
+
+@keyframes sparkles {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+                                          /* Error */
+
+// Element "shakes" chaotically
+// Purpose: Dramatically emphasizes that something has gone wrong.
+
+@keyframes errorEarthquake {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-5px, -5px);
+  }
+  40% {
+    transform: translate(5px, 5px);
+  }
+  60% {
+    transform: translate(-5px, 5px);
+  }
+  80% {
+    transform: translate(5px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+// Element "glows" red with changing shadow effects
+// Purpose: Enhances the sense of an error.
+
+@keyframes errorGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(244, 67, 54, 1);
+  }
+}
+
+// Element "breathes" (scale alternates between 1 and 1.1)
+// Purpose: Draws attention to the error with a light but noticeable effect.
+
+@keyframes errorPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+                                          /* Warning */
+
+// Element "jumps" slightly up and returns to its place
+// Purpose: Highlights a warning in a less dramatic way than an error.
+
+@keyframes warningBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+// Element "glows" yellow with varying shadow effects
+// Purpose: Clearly emphasizes a warning in a calm manner.
+
+@keyframes warningGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 152, 0, 1);
+  }
+}
+
+// Element rotates 360 degrees
+// Purpose: Creates a dynamic visual effect for a warning state.
+
+@keyframes warningRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+                                          /* Bounce to image */
+
+// Image starts small (scale 0) and grows to its original size
+// Purpose: Highlights the image prominently at the top of the dialog.
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}

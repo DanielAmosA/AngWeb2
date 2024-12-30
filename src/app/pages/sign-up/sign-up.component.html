@@ -1,0 +1,140 @@
+<div class="signUpContainer">
+  <mat-card class="signUpCard">
+    <form class="signUpForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <h1 class="signUpTitle">הירשם עכשיו!</h1>
+
+      <!-- Full Name -->
+      <mat-form-field appearance="fill" class="input-field signUpInputField">
+        <mat-label>שם מלא</mat-label>
+        <input matInput placeholder="הכנס שם מלא" formControlName="name" />
+      </mat-form-field>
+      <div class="errors" *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.errors">
+        <mat-error class="error" *ngFor="let error of registerForm.get('name')?.errors | keyvalue; let i = index"
+                    [ngStyle]="{ '--index': i + 1 }">
+          <!-- Displaying errors -->
+          <ng-container *ngIf="error.key === 'required'">🐶 שם מלא הוא שדה חובה</ng-container>
+          <ng-container *ngIf="error.key === 'invalidNameLength'">🦥 אורך שם מלא צריך להיות בין 2 ל 30 תווים</ng-container>
+          <ng-container *ngIf="error.key === 'invalidName'">🐋 שם מלא יכול להכיל רק אותיות עברית / אנגלית ורווחים</ng-container>
+          <ng-container *ngIf="error.key === 'invalidNameSpace'">🐲 שם מלא אינו יכול להתחיל או ו להסתיים ברווח</ng-container>
+        </mat-error>
+      </div>
+
+      <!-- Email -->
+      <mat-form-field appearance="fill" class="input-field signUpInputField">
+        <mat-label>אימייל</mat-label>
+        <input matInput placeholder="הכנס אימייל" formControlName="email" />
+      </mat-form-field>
+      <div class="errors" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors">
+        <mat-error class="error" *ngFor="let error of registerForm.get('email')?.errors | keyvalue; let i = index"
+                    [ngStyle]="{ '--index': i + 1 }">
+          <!-- Error Display -->
+          <ng-container *ngIf="error.key === 'required'">📨 אימייל הוא שדה חובה</ng-container>
+          <ng-container *ngIf="error.key === 'invalidEmail'">📧 אימייל לא תקין</ng-container>
+        </mat-error>
+      </div>
+
+      <!-- Phone Number -->
+      <mat-form-field appearance="fill" class="input-field signUpInputField">
+        <mat-label>מספר פלאפון</mat-label>
+        <input matInput placeholder="הכנס מספר פלאפון" formControlName="phone" />
+      </mat-form-field>
+      <div class="errors" *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.errors">
+        <mat-error class="error" *ngFor="let error of registerForm.get('phone')?.errors | keyvalue; let i = index"
+                    [ngStyle]="{ '--index': i + 1 }">
+          <!-- Displaying Errors -->
+          <ng-container *ngIf="error.key === 'required'">📲 מספר פלאפון הוא שדה חובה</ng-container>
+          <ng-container *ngIf="error.key === 'invalidPhoneFormat'">📡 מספר פלאפון יכול להכיל רק ספרות או קידומות</ng-container>
+          <ng-container *ngIf="error.key === 'invalidPhonePrefix'">☎️ קידומת מספר פלאפון לא תקינה</ng-container>
+          <ng-container *ngIf="error.key === 'invalidIsraeliPhoneLength'">📲 אורך מספר פלאפון בישראל צריך להיות כ 10 ספרות</ng-container>
+          <ng-container *ngIf="error.key === 'invalidPhoneLength'">📱 אורך מספר פלאפון צריך להיות בין 10 ל 15 ספרות</ng-container>
+        </mat-error>
+      </div>
+
+      <!-- ID Card -->
+      <mat-form-field appearance="fill" class="input-field signUpInputField">
+        <mat-label>תעודת זהות</mat-label>
+        <input matInput placeholder="הכנס תעודת זהות" formControlName="idNumber" />
+      </mat-form-field>
+      <div class="errors" *ngIf="registerForm.get('idNumber')?.touched && registerForm.get('idNumber')?.errors">
+        <mat-error class="error" *ngFor="let error of registerForm.get('idNumber')?.errors | keyvalue; let i = index"
+                    [ngStyle]="{ '--index': i + 1 }">
+          <!-- Displaying Errors -->
+          <ng-container *ngIf="error.key === 'required'">🪪 תעודת זהות היא שדה חובה</ng-container>
+          <ng-container *ngIf="error.key === 'invalidIDLength'">🪪 תעודת זהות חייבת להיות 9 ספרות</ng-container>
+          <ng-container *ngIf="error.key === 'invalidIDFormatNumeric'">🪪 תעודת זהות יכולה להכיל רק ספרות</ng-container>
+          <ng-container *ngIf="error.key === 'invalidIDFormatSum'">🪪 תעודת זהות לא תקינה</ng-container>
+        </mat-error>
+      </div>
+
+      <!-- Date of Birth -->
+      <mat-form-field appearance="fill" class="input-field signUpInputField">
+        <mat-label>תאריך לידה</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob" [max]="today"  />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+     </mat-form-field>
+      <div class="errors" *ngIf="registerForm.get('dob')?.touched && registerForm.get('dob')?.errors">
+        <mat-error class="error" *ngFor="let error of registerForm.get('dob')?.errors | keyvalue; let i = index"
+                    [ngStyle]="{ '--index': i + 1 }">
+          <!-- Displaying Errors -->
+          <ng-container *ngIf="error.key === 'required'">⌚️ תאריך לידה הוא שדה חובה</ng-container>
+          <ng-container *ngIf="error.key === 'matDatepickerParse'">⏰ יש לבחור תאריך תקין</ng-container>
+          <ng-container *ngIf="error.key === 'futureDate'">⌚️ תאריך לידה חייב להיות לפני תאריך נוכחי או שאתה נוסע בזמן (טיימר ? 🧭 )</ng-container>
+        </mat-error>
+      </div>
+
+       <!-- Password -->
+       <mat-form-field appearance="fill" class="input-field signUpInputField">
+        <mat-label>סיסמה</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="הכנס סיסמה" formControlName="password" />
+        <mat-icon matSuffix (click)="togglePasswordVisibility()" class="signUpInputFieldIcon">
+          {{ hidePassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+      </mat-form-field>
+      <div class="errors" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors">
+        <mat-error class="error" *ngFor="let error of registerForm.get('password')?.errors | keyvalue; let i = index"
+                    [ngStyle]="{ '--index': i + 1 }">
+          <!-- Displaying Errors -->
+          <ng-container *ngIf="error.key === 'required'">🔐 סיסמה היא שדה חובה</ng-container>
+          <ng-container *ngIf="error.key === 'passwordLength'">🔐 סיסמה חייבת להיות בין 8 ל-20 תווים</ng-container>
+          <ng-container *ngIf="error.key === 'passwordLowerCase'">🔮 סיסמה חייבת להכיל לפחות אות קטנה באנגלית</ng-container>
+          <ng-container *ngIf="error.key === 'passwordUpperCase'">🔮 סיסמה חייבת להכיל לפחות אות גדולה באנגלית</ng-container>
+          <ng-container *ngIf="error.key === 'passwordDigit'">💡 סיסמה חייבת להכיל לפחות ספרה</ng-container>
+          <ng-container *ngIf="error.key === 'passwordSpecialChar'">💡 סיסמה חייבת להכיל לפחות סימן מיוחד</ng-container>
+          <ng-container *ngIf="error.key === 'passwordWhitespace'">🚨 סיסמה אינה יכולה להכיל רווחים</ng-container>
+        </mat-error>
+      </div>
+
+      <!-- Confirm Password -->
+      <mat-form-field appearance="fill" class="input-field signUpInputField">
+        <mat-label>וידוי סיסמה</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="אשר סיסמה" formControlName="confirmPassword" />
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{ hidePassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+     </mat-form-field>
+      <div class="errors" *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.errors">
+        <mat-error class="error" *ngFor="let error of registerForm.get('confirmPassword')?.errors | keyvalue; let i = index"
+                    [ngStyle]="{ '--index': i + 1 }">
+          <!-- Displaying Errors -->
+          <ng-container *ngIf="error.key === 'required'">🔏 וידוי סיסמה הוא שדה חובה</ng-container>
+          <ng-container *ngIf="error.key === 'passwordMismatch'">🔏 הסיסמה לא תואמת</ng-container>
+        </mat-error>
+      </div>
+
+      <!-- Form Submit Button -->
+      <button mat-raised-button color="primary" class="register-button signUpButton" [disabled]="registerForm.invalid">הרשמה</button>
+
+      <!-- <div>
+        <h4>Form Errors (JSON):</h4>
+        <pre>{{ formErrors }}</pre>
+      </div> -->
+
+    </form>
+  </mat-card>
+
+  <!-- Form Image -->
+  <div class="imageContainer">
+    <img class="imageForm" src="assets/images/signUp.gif" alt="Sign Up" />
+  </div>
+</div>

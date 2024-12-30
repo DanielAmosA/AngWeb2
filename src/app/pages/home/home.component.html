@@ -1,0 +1,239 @@
+<!-- home.component.html -->
+<div class="homeContainer">
+
+  <!-- Nav Sections -->
+  <nav class="floatingNav">
+    <ul class="navList">
+      <li class="navItem">
+        <button class="navItemBtn" (click)="scrollToSection('hero')" >
+          <mat-icon class="navItemIcon">home</mat-icon>
+          <span class="navItemDesc">בית</span>
+        </button>
+      </li>
+      <li class="navItem">
+        <button class="navItemBtn" (click)="scrollToSection('features')">
+          <mat-icon class="navItemIcon">rocket_launch</mat-icon>
+          <span class="navItemDesc">פתרונות</span>
+        </button>
+      </li>
+      <li class="navItem">
+        <button class="navItemBtn"  (click)="scrollToSection('testimonials')">
+          <mat-icon class="navItemIcon">forum</mat-icon>
+          <span class="navItemDesc">המלצות</span>
+        </button>
+      </li>
+      <li class="navItem">
+        <button class="navItemBtn"  (click)="scrollToSection('video')">
+          <mat-icon class="navItemIcon">play_circle</mat-icon>
+          <span class="navItemDesc">וידאו</span>
+        </button>
+      </li>
+      <li class="navItem">
+        <button class="navItemBtn"  (click)="scrollToSection('faq')">
+          <mat-icon class="navItemIcon">help_outline</mat-icon>
+          <span class="navItemDesc">שאלות</span>
+        </button>
+      </li>
+      <li class="navItem">
+        <button class="navItemBtn" (click)="scrollToSection('contact')">
+          <mat-icon class="navItemIcon">contact_mail</mat-icon>
+          <span class="navItemDesc">צור קשר</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="heroSection">
+    <div class="heroContent">
+      <h1 class="mainTitle">
+        <span>Daniel</span>
+        <span>Amos</span>
+      </h1>
+      <p class="subTitle">מעצב את העתיד שלך</p>
+      <p class="tagLine">פתרונות טכנולוגיים מתקדמים שמשנים את המשחק</p>
+      <button mat-raised-button class="ctaButton" (click)="navigateToLogin()">
+        <mat-icon>rocket_launch</mat-icon>
+        &nbsp;המסע לעתיד מתחיל עכשיו
+      </button>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="floatingElements">
+      <div class="element circle"></div>
+      <div class="element square"></div>
+      <div class="element circle2"></div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="featuresSection">
+    <h2 class="featuresSectionTitle">הפתרונות שלנו</h2>
+    <div class="featuresGrid">
+      <div class="featureCard" *ngFor="let feature of features">
+        <div class="iconWrapper">
+          <mat-icon class="iconWrapperIcon" [fontIcon]="feature.icon"></mat-icon>
+        </div>
+        <div class="content">
+          <h3 class="featureTitle">{{feature.title}}</h3>
+          <p class="featureContent">{{feature.content}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonialsSection">
+    <h2 class="sectionTitle">ממליצים עלינו</h2>
+    <div class="testimonialsGrid">
+      <mat-card class="testimonialCard" *ngFor="let testimonial of testimonials">
+        <div class="avatar">
+          <img class="avatarImg" [src]="testimonial.image" [alt]="testimonial.name">
+        </div>
+        <mat-card-content class="avatarContent ">
+          <h3 class="name">{{testimonial.name}}</h3>
+          <p class="role">{{testimonial.role}}</p>
+          <p class="content">{{testimonial.content}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- Motivation Video Section -->
+  <section id="video" class="videoSection">
+    <h2 class="sectionTitle animate-slide-up">השראה לדרך</h2>
+    <div class="videoContainer">
+      <video controls class="videoDesc">
+        <source src="assets/videos/motivation.mp4" type="video/mp4">
+        הדפדפן שלך לא תומך בתג הוידאו.
+      </video>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faqSection">
+    <div class="sectionHeader">
+      <h2 class="sectionHeaderTitle">שאלות נפוצות</h2>
+    </div>
+
+    <div class="faqContainer">
+      <mat-accordion class="customAccordion">
+        <mat-expansion-panel *ngFor="let faq of faqs" class="faqPanel">
+          <mat-expansion-panel-header class="panelHeader">
+            <mat-panel-title class="question">
+              <mat-icon class="questionIcon">help_outline</mat-icon>
+              <span>{{faq.question}}</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="answer">
+            {{faq.answer}}
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contactSection">
+    <h2 class="sectionTitle">צור קשר</h2>
+    <div class="contactContainer">
+      <div class="contactInfo">
+        <div class="infoItem">
+          <mat-icon class="infoItemIcon">phone</mat-icon>
+          <span class="infoItemDesc">050-1234567</span>
+        </div>
+        <div class="infoItem">
+          <mat-icon class="infoItemIcon">email</mat-icon>
+          <span class="infoItemDesc" >daniel&#64;amos.com</span>
+        </div>
+        <div class="infoItem">
+          <mat-icon class="infoItemIcon">location_on</mat-icon>
+          <span class="infoItemDesc">תל אביב, ישראל</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mainFooter">
+    <div class="footerContent">
+      <div class="footerLinks">
+        <a class="footerLink" mat-button [routerLink]="['/privacy']">מדיניות פרטיות</a>
+        <a class="footerLink" mat-button [routerLink]="['/terms']">תנאים והגבלות</a>
+      </div>
+
+      <div class="socialLinks">
+        <a class="socialBtn"
+        href="mailto:danielamosdev@gmail.com?subject=היי%20לך&body=(=%20זהו%20גוף%20האימייל%20שיהיה%20לך%20יום%20קסום"
+        matTooltip="Email" matTooltipPosition="above">
+          <mat-icon class="socialBtnIcon">alternate_email</mat-icon>
+        </a>
+
+        <a class="socialBtn"
+        href=" https://www.facebook.com/profile.php?id=100051091839907" target="_blank"
+        matTooltip="Facebook" matTooltipPosition="above">
+          <mat-icon class="socialBtnIcon">facebook</mat-icon>
+        </a>
+        <a class="socialBtn"
+        href="https://www.instagram.com/danielamos976/" target="_blank"
+        matTooltip="Instagram"  matTooltipPosition="above">
+
+          <mat-icon class="socialBtnIcon">photo_camera</mat-icon>
+        </a>
+        <a class="socialBtn"
+        href="https://www.linkedin.com/in/daniel-amos-artzi-83a446186/" target="_blank"
+        matTooltip="LinkedIn"  matTooltipPosition="above">
+          <mat-icon class="socialBtnIcon">hub</mat-icon>
+        </a>
+        <a class="socialBtn"
+        href="https://github.com/DanielAmosA" target="_blank"
+        matTooltip="GitHub"  matTooltipPosition="above">
+          <mat-icon class="socialBtnIcon">adb</mat-icon>
+        </a>
+      </div>
+
+      <p class="copyright">
+        <span class="letter">🔫</span>
+        <span class="letter">כ</span>
+        <span class="letter">ל</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">ה</span>
+        <span class="letter">ז</span>
+        <span class="letter">כ</span>
+        <span class="letter">ו</span>
+        <span class="letter">י</span>
+        <span class="letter">ו</span>
+        <span class="letter">ת</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">ש</span>
+        <span class="letter">מ</span>
+        <span class="letter">ו</span>
+        <span class="letter">ר</span>
+        <span class="letter">ו</span>
+        <span class="letter">ת</span>
+        <span class="letter dot"></span>
+        <span class="letter">s</span>
+        <span class="letter">o</span>
+        <span class="letter">m</span>
+        <span class="letter">A</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">l</span>
+        <span class="letter">e</span>
+        <span class="letter">i</span>
+        <span class="letter">n</span>
+        <span class="letter">a</span>
+        <span class="letter">D</span>
+        <span class="letter">🚀</span>
+        <span class="letter dot"></span>
+        <span class="letter">🎆</span>
+        <span class="letter">©</span>
+        <span class="letter">4</span>
+        <span class="letter">2</span>
+        <span class="letter">0</span>
+        <span class="letter">2</span>
+        <span class="letter">🎆</span>
+      </p>
+    </div>
+  </footer>
+ </div>

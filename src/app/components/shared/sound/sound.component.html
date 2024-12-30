@@ -1,0 +1,4 @@
+<div class="audioControls">
+  <button *ngIf="!isPlay" (click)="playSound()" class="playBtn">נגן סאונד</button>
+  <button *ngIf="isPlay" (click)="stopSound()" class="stopBtn">עצור סאונד</button>
+</div>

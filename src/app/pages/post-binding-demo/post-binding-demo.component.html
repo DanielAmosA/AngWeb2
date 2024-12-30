@@ -1,0 +1,67 @@
+<div>
+  <h1>Binding Demo</h1>
+
+  <!-- One-Way Data Binding -->
+  <h2>One-Way Data Binding</h2>
+  <p>{{ oneWayData | customUppercase }}</p>
+  <button (click)="oneWayData = 'The data has been updated!'">Update Data</button>
+
+  <!-- Two-Way Data Binding -->
+  <h2>Two-Way Data Binding</h2>
+  <label for="twoWay">Enter Data:</label>
+  <input id="twoWay" [(ngModel)]="twoWayData" />
+  <p>You entered: {{ twoWayData | customUppercase }}</p>
+</div>
+
+<div>
+  <h1>{{'Binding Demo2'| textToEmoji}}</h1>
+
+  <!-- One-Way Data Binding -->
+  <h2>One-Way Data Binding</h2>
+  <p appHighlight="lightblue">{{ oneWayData }}</p>
+  <button (click)="oneWayData = 'The data has been updated!'">Update Data</button>
+
+  <!-- Two-Way Data Binding -->
+  <h2>Two-Way Data Binding</h2>
+  <label for="twoWay">Enter Data:</label>
+  <input id="twoWay" [(ngModel)]="twoWayData" />
+  <p appHighlight="lightgreen">You entered: {{ twoWayData }}</p>
+</div>
+
+<div appDrag style="width: 100px; height: 100px; background: lightblue;">
+  Drag me!
+</div>
+
+<hr>
+<p appChangeFont="Courier New">Hover to change font</p>
+<p appTooltip="This is a tooltip!">Hover over me</p>
+
+<p [innerHTML]="'Angular is awesome!' | highlightText:'awesome'"></p>
+<p>{{ 'hello world from angular' | capitalize }}</p>
+<p>{{ '2024-12-27' | dateFormat }}</p>
+<!-- התוצאה: 27/12/2024 -->
+
+<p>{{ '2024-12-27' | dateFormat:'MM/DD/YYYY' }}</p>
+<!-- התוצאה: 12/27/2024 -->
+
+<hr>
+<h1>Animation and Color Pipe Demo</h1>
+
+<!-- אנימציה -->
+<div appAnimation="bounce" style="width: 200px; height: 200px; background: lightblue; text-align: center; line-height: 200px; margin-bottom: 20px;">
+  Hover for bounce!
+</div>
+
+<div appAnimation="rotateOut" style="width: 200px; height: 200px; background: lightgreen; text-align: center; line-height: 200px; margin-bottom: 20px;">
+  Hover for rotation!
+</div>
+
+<div appAnimation="fadeOutDown" style="width: 200px; height: 200px; background: rgb(237, 190, 32); text-align: center; line-height: 200px; margin-bottom: 20px;">
+  Hover for FadeInRightBig!
+</div>
+
+<!-- שינוי צבע -->
+<h2>Dynamic Colors:</h2>
+<p [innerHTML]="'Angular Animations' | colorChange"></p>
+<p [innerHTML]="'Amazing Colors' | colorChange"></p>
+<p [innerHTML]="42 | colorChange"></p>

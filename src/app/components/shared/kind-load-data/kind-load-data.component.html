@@ -1,0 +1,45 @@
+<div class="text-center">
+  <p></p>
+</div>
+
+<div *ngIf="kind === 'Wait'"  class="text-center mainKindLoadData">
+  <mat-card class="mat-elevation-z4">
+    <div class="justify-content-center">
+      <div>
+        <div class="spinnerContainer">
+          <mat-spinner diameter="50"></mat-spinner>
+        </div>
+        <mat-card-title class="mainKindLoadDataTitle">🤖  טוען נתונים ...</mat-card-title>
+        <mat-card-content class="mainKindLoadDataContent">🔄 {{ waitMessage }}</mat-card-content>
+        <img
+          class="mainKindLoadDataImg"
+          src="{{ waitImg }}"
+          alt="waitImg"
+          mat-card-image
+        />
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<div *ngIf="kind === 'Error'" class="text-center mainKindLoadData" >
+
+  <mat-card class="mat-elevation-z4">
+    <div class="justify-content-center">
+      <div>
+        <mat-card-title class="mainKindLoadDataTitle">👾 שגיאת קבלת נתונים X </mat-card-title>
+        <mat-card-content class="mainKindLoadDataContent">❌ {{ errorMessage }}</mat-card-content>
+        <img
+          class="mainKindLoadDataImg"
+          src="{{ errorImg }}"
+          alt="ErrorImg"
+          mat-card-image
+        />
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<div *ngIf="kind === 'Success'">
+  <ng-container *ngTemplateOutlet="successTemplate"></ng-container>
+</div>
